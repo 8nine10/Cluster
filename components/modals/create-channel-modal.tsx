@@ -53,6 +53,7 @@ const formSchema = z.object({
 export const CreateChannelModal = () => {
     const router = useRouter();
     const { isOpen, onClose, type, data } = useModal();
+    // console.log(data);
     const params = useParams();
     const isModalOpen = isOpen && type === "createChannel";
     const { channelType } = data;

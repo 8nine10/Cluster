@@ -11,10 +11,12 @@ import { LeaveServerModal } from "../modals/leave-server-modal";
 import { DeleteServerModal } from "../modals/delete-server-modal";
 import { DeleteChannelModal } from "../modals/delete-channel-modal";
 import { EditChannelModal } from "../modals/edit-channel-modal";
+import { MessageFileModal } from "../modals/message-file-modal";
+import { DeleteMessageModal } from "../modals/delete-message-modal";
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
-    const { type, isOpen } = useModal(); // Access modal state
+    const { type, isOpen } = useModal();
 
     useEffect(() => {
         setIsMounted(true);
@@ -24,7 +26,6 @@ export const ModalProvider = () => {
         return null;
     }
 
-    // Render only the relevant modal based on `type`
     return (
         <>
             {type === "createServer" && isOpen && <CreateServerModal />}
@@ -36,6 +37,8 @@ export const ModalProvider = () => {
             {type === "leaveServer" && isOpen && <LeaveServerModal />}
             {type === "deleteServer" && isOpen && <DeleteServerModal />}
             {type === "deleteChannel" && isOpen && <DeleteChannelModal />}
+            {type === "deleteMessage" && isOpen && <DeleteMessageModal />}
+            {type === "messageFile" && isOpen && <MessageFileModal />}
         </>
     );
 };
