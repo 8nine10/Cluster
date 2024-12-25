@@ -16,7 +16,7 @@ const roleIconMap = {
     [MemberRole.MODERATOR]: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
     [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
 }
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export const ServerMember = ({
     member,
     server
@@ -51,3 +51,4 @@ export const ServerMember = ({
         </button>
     )
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */

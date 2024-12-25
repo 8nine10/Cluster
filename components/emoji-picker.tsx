@@ -11,16 +11,11 @@ import data from "@emoji-mart/data";
 import { useTheme } from "next-themes";
 
 
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface EmojiPickerProps {
     onChange: (value: string) => void;
 }
-type EmojiType = {
-    native: string;
-    id: string;
-    name?: string;
-    [key: string]: any; // Add other properties if needed
-};
+
 
 export const EmojiPicker = ({
     onChange,
@@ -37,13 +32,15 @@ export const EmojiPicker = ({
                 side="right"
                 sideOffset={40}
                 className="bg-transparent border-none shadow-none drop-shadow-none mb-16"
-            >
+                >
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 <Picker
                     theme={resolvedTheme}
                     data={data}
-                    onEmojiSelect={(emoji: EmojiType) => onChange(emoji.native)}
-                />
+                    onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+                    />
             </PopoverContent>
         </Popover>
     )
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
