@@ -2,7 +2,6 @@ import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types";
 import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
 
 export default async function handler(
     req: NextApiRequest,
@@ -25,22 +24,6 @@ export default async function handler(
         const conversation = await db.conversation.findFirst({
             where: {
                 id: conversationId as string,
-                // OR: [
-                //     {
-                //         memberOne: {
-                //             profileId: profile.id,
-                //         }
-                //     },
-                //     {
-                //         memberTwo: {
-                //             profileId: profile.id,
-                //         }
-                //     },
-                // ]
-                // OR: [
-                //     { AND: [{ memberOneId }, { memberTwoId }] },
-                //     { AND: [{ memberOneId: memberTwoId }, { memberTwoId: memberOneId }] },
-                // ]
             },
             include: {
                 memberOne: true,

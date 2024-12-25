@@ -1,9 +1,9 @@
 "use client";
 
-import { Member, MemberRole, Profile } from "@prisma/client";
+import { Member, Profile } from "@prisma/client";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "../action-tooltip";
-import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
+import { Edit, FileIcon, Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useModal } from "@/hooks/use-modal-store";
-import { useRouter, useParams } from "next/navigation";
 
 
 
@@ -41,11 +40,7 @@ interface ChatItemProps {
 }
 
 
-const roleIconMap = {
-    "GUEST": null,
-    "MODERATOR": <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-    "ADMIN": <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
-}
+
 
 const formSchema = z.object({
     content: z.string().min(1),
@@ -65,8 +60,6 @@ export const ChatItem2 = ({
 }: ChatItemProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const { onOpen } = useModal();
-    const params = useParams();
-    const router = useRouter();
     const fileType = fileUrl?.split("|")[1]?.split(".")[1];
     const fileName = fileUrl?.split("|")[1]?.split(".")[0];
     const fileURL = fileUrl?.split("|")[0]
@@ -77,7 +70,7 @@ export const ChatItem2 = ({
     const isImage = !isPDF && fileUrl;
 
     useEffect(() => {
-        const handelKeyDown = (event: any) => {
+        const handelKeyDown = (event: KeyboardEvent) => {
             if (event.key === "Escape" || event.keyCode === 27) {
                 setIsEditing(false);
             }

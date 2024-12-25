@@ -8,7 +8,7 @@ import { UserAvatar } from "../user-avatar";
 
 interface ServerMemberProp {
     member: Member & { profile: Profile };
-    server: Server;
+    server?: Server;
 }
 
 const roleIconMap = {

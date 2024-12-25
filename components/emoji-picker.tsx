@@ -15,7 +15,12 @@ import { useTheme } from "next-themes";
 interface EmojiPickerProps {
     onChange: (value: string) => void;
 }
-
+type EmojiType = {
+    native: string;
+    id: string;
+    name?: string;
+    [key: string]: any; // Add other properties if needed
+};
 
 export const EmojiPicker = ({
     onChange,
@@ -36,7 +41,7 @@ export const EmojiPicker = ({
                 <Picker
                     theme={resolvedTheme}
                     data={data}
-                    onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+                    onEmojiSelect={(emoji: EmojiType) => onChange(emoji.native)}
                 />
             </PopoverContent>
         </Popover>

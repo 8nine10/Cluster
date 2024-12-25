@@ -14,9 +14,6 @@ export const ChatVideoButton = () => {
     const Icon = isVideo ? VideoOff : Video;
     const tooltipLabel = isVideo ? "End video call" : "Start video call";
 
-    const handleClick = () => {
-        // Handle the video button click event
-    };
     const onClick = () => {
         const url = qs.stringifyUrl({
             url: pathname || "",

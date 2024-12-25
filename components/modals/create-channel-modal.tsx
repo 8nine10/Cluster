@@ -25,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     Select,
     SelectContent,

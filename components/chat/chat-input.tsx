@@ -12,14 +12,14 @@ import {
     FormItem
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Plus, Smile } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
 import { EmojiPicker } from "../emoji-picker";
 import { useRouter } from "next/navigation";
 
 interface ChatInputProps {
     apiUrl: string;
-    query: Record<string, any>;
+    query: Record<string, string | number | boolean>;
     name: string;
     type: "conversation" | "channel";
 }

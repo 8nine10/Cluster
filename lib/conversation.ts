@@ -10,11 +10,6 @@ export const getOrCreateConversation = async (memberOneId: string, memberTwoId: 
     return conversation;
 }
 
-const memberInclude = {
-    include: {
-        profile: true,
-    },
-};
 
 const findConversation = async (memberOneId: string, memberTwoId: string) => {
     try {
