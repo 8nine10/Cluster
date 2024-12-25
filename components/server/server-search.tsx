@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command";
 import { useParams, useRouter } from "next/navigation";
+import { DialogDescription, DialogTitle } from "../ui/dialog";
 
 
 
@@ -58,7 +59,9 @@ export const ServerSearch = ({
                 </kbd>
             </button>
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <CommandInput placeholder="Search all channels and members" />
+                <DialogTitle className="text-center" />
+                <DialogDescription />
+                <CommandInput autoFocus placeholder="Search all channels and members" />
                 <CommandList>
                     <CommandEmpty>
                         No Results Found

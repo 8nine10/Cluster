@@ -30,9 +30,7 @@ import { useRouter, useParams } from "next/navigation";
 interface ChatItemProps {
     id: string;
     content: string;
-    member: Member & {
-        profile: Profile;
-    };
+    member: Profile;
     timestamp: string;
     fileUrl: string | null;
     deleted: boolean;
@@ -53,7 +51,7 @@ const formSchema = z.object({
     content: z.string().min(1),
 })
 
-export const ChatItem = ({
+export const ChatItem2 = ({
     id,
     content,
     member,
@@ -72,21 +70,11 @@ export const ChatItem = ({
     const fileType = fileUrl?.split("|")[1]?.split(".")[1];
     const fileName = fileUrl?.split("|")[1]?.split(".")[0];
     const fileURL = fileUrl?.split("|")[0]
-    const isAdmin = currentMember.role === MemberRole.ADMIN;
-    const isModerator = currentMember.role === MemberRole.MODERATOR;
-    const isOwner = currentMember.id === member.id;
-    const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
+    const isOwner = currentMember.profileId === member.id;
+    const canDeleteMessage = !deleted && (isOwner);
     const canEditMessage = !deleted && isOwner && !fileUrl;
     const isPDF = fileType === "pdf" && fileUrl;
     const isImage = !isPDF && fileUrl;
-
-    const onMemberClick = () => {
-        if (member.id === currentMember.id) {
-            return;
-        }
-
-        router.push(`/servers/${params?.serverId}/conversations/${member.profile.id}`);
-    }
 
     useEffect(() => {
         const handelKeyDown = (event: any) => {
@@ -131,18 +119,15 @@ export const ChatItem = ({
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
             <div className="group flex gap-x-2 items-start w-full">
-                <div onClick={onMemberClick} className="cursor-pointer hover:drop-shadow-md transition">
-                    <UserAvatar src={member.profile.imageUrl} />
+                <div className="cursor-pointer hover:drop-shadow-md transition">
+                    <UserAvatar src={member.imageUrl} />
                 </div>
                 <div className="flex flex-col w-full">
                     <div className="flex items-center gap-x-2">
                         <div className="flex items-center">
-                            <p onClick={onMemberClick} className="font-semibold text-sm hover:underline cursor-pointer">
-                                {member.profile.name}
+                            <p className="font-semibold text-sm hover:underline cursor-pointer">
+                                {member.name}
                             </p>
-                            <ActionTooltip label={member.role}>
-                                {roleIconMap[member.role]}
-                            </ActionTooltip>
                         </div>
                         <span className="text-xs text-zinc-500 dark:text-zinc-400">
                             {timestamp}

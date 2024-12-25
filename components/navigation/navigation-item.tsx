@@ -37,6 +37,8 @@ export const NavigationItem = ({
                         sizes="sm"
                         src={imageUrl}
                         alt="Channel"
+                        priority
+                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
             </button>

@@ -119,7 +119,7 @@ export const MembersModal = () => {
                                             <MoreVertical className="h-4 w-4 text-zinc-500" />
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent side="left">
-                                            <DropdownMenuSub>
+                                            <DropdownMenuSub >
                                                 <DropdownMenuSubTrigger className="flex items-center">
                                                     <ShieldQuestion className="h-4 w-4 mr-2" />
                                                     <span>Role</span>

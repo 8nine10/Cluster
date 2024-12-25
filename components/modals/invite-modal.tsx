@@ -3,6 +3,7 @@
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog";
@@ -31,9 +32,10 @@ export const InviteModal = () => {
         setCopied(false);
 
         setTimeout(() => {
-            setCopied(false);
+            setCopied(true);
         }, 1000)
     }
+
     const onNew = async () => {
         try {
             setLoading(true);
@@ -52,6 +54,7 @@ export const InviteModal = () => {
                     <DialogTitle className="text-2xl text-center">
                         Invite people
                     </DialogTitle>
+                    <DialogDescription />
                 </DialogHeader>
                 <div className="p-6">
                     <Label className="uppercase text-xs fond-bold text-zinc dark:text-secondary/70">

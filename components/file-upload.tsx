@@ -31,6 +31,8 @@ export const FileUpload = ({
                     src={fileURL}
                     alt="Upload"
                     className="rounded-full"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <button onClick={() => onChange("")} className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm">
                     <X className="h-4 w-4" />

@@ -8,6 +8,7 @@ import axios from "axios";
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle
@@ -101,6 +102,7 @@ export const CreateChannelModal = () => {
                     <DialogTitle className="text-2xl text-center">
                         Create Channel
                     </DialogTitle>
+                    <DialogDescription />
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

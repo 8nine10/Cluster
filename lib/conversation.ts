@@ -1,8 +1,7 @@
 import { db } from "@/lib/db";
 
-
 export const getOrCreateConversation = async (memberOneId: string, memberTwoId: string) => {
-    let conversation = await findConversation(memberOneId, memberTwoId) || await findConversation(memberTwoId, memberOneId);
+    let conversation = await findConversation(memberOneId, memberTwoId);
 
     if (!conversation) {
         conversation = await createNewConversation(memberOneId, memberTwoId);
@@ -11,34 +10,33 @@ export const getOrCreateConversation = async (memberOneId: string, memberTwoId: 
     return conversation;
 }
 
+const memberInclude = {
+    include: {
+        profile: true,
+    },
+};
+
 const findConversation = async (memberOneId: string, memberTwoId: string) => {
     try {
         return await db.conversation.findFirst({
             where: {
-                AND: [
-                    { memberOneId: memberOneId },
-                    { memberTwoId: memberTwoId },
+                OR: [
+                    { AND: [{ memberOneId }, { memberTwoId }] },
+                    { AND: [{ memberOneId: memberTwoId }, { memberTwoId: memberOneId }] },
                 ]
             },
             include: {
-                memberOne: {
-                    include: {
-                        profile: true,
-                    }
-                },
-                memberTwo: {
-                    include: {
-                        profile: true,
-                    }
-                },
+                memberOne: true,
+                memberTwo: true,
             }
         });
     } catch (error) {
+        console.error("Error in findConversation:", error);
         return null;
     }
 }
 
-const createNewConversation = async ( memberOneId: string, memberTwoId: string ) => {
+const createNewConversation = async (memberOneId: string, memberTwoId: string) => {
     try {
         return await db.conversation.create({
             data: {
@@ -46,19 +44,12 @@ const createNewConversation = async ( memberOneId: string, memberTwoId: string )
                 memberTwoId,
             },
             include: {
-                memberOne: {
-                    include: {
-                        profile: true,
-                    }
-                },
-                memberTwo: {
-                    include: {
-                        profile: true,
-                    }
-                },
+                memberOne: true,
+                memberTwo: true,
             }
-        })
+        });
     } catch (error) {
+        console.error("Error in createNewConversation:", error);
         return null;
     }
 }
