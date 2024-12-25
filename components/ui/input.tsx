@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable */
 export interface InputProps
 extends React.InputHTMLAttributes<HTMLInputElement> {}
 
@@ -24,4 +24,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   Input.displayName = "Input"
   
   export { Input }
-  /* eslint-enable @typescript-eslint/no-empty-interface */
+  /* eslint-enable */

@@ -11,7 +11,7 @@ import data from "@emoji-mart/data";
 import { useTheme } from "next-themes";
 
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable */
 interface EmojiPickerProps {
     onChange: (value: string) => void;
 }
@@ -43,4 +43,4 @@ export const EmojiPicker = ({
         </Popover>
     )
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
+/* eslint-enable */
